@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+  <title>Resume Matcher</title>
+  <script src="./javascripts/lib/underscore-min.js"></script>
+  <script src="./javascripts/lib/angular/angular.min.js"></script>
+  <script src="./javascripts/app.js"></script>
+  <link href="./javascripts/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./javascripts/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="./stylesheets/style.css" rel="stylesheet">
+</head>
+<html ng-app="todoApp">
+  <body ng-controller="ToDoCtrl">
+    <div class="col-xs-12">
+      <h2>Resume Matcher </h2>
+    </div>
+    <div class="learner">
+      <div class="col-xs-8"><img style="width:100%" ng-src="./images/resume/{{model.currentImage}}"></div>
+      <div class="col-xs-4">
+        <h3>What job should they have?</h3>
+        <ul class="list-unstyled">
+          <li ng-repeat="job in model.jobList"><a href="javascript:;" ng-click="selectJob(job)" ng-class=" jobSelected(job) ? 'active' : '' ">{{job}}  </a><a style="color:orange;" href="" ng-click="unselectJob(job)" ng-show="jobSelected(job)">X</a></li>
+        </ul>
+      </div>
+      <div ng-show="showOthers()" class="col-xs-4">
+        <hr>
+        <h3>See what others thought</h3>
+        <ul class="list-unstyled">
+          <li ng-repeat="job in jobCounts">{{job.tag + "(" + job.count + ")"}}</li>
+        </ul>
+      </div>
+      <div ng-show="showOthers()" class="col-xs-4">
+        <hr><a href="" ng-click="nextResume()" style="padding:1em; border-radius:3px; background-color: orange; color: white;">Next Resume</a>
+      </div>
+    </div>
+  </body>
+</html>
